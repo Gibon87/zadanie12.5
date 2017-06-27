@@ -3,10 +3,13 @@ var tweetLink = "https://twitter.com/intent/tweet?text=";
 var quoteUrl = "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1";
 
 function getQuote() {
-    $.getJSON(prefix + quoteUrl, createTweet);
+    // $.getJSON(prefix + quoteUrl, createTweet);   chwilowe wylaczenie kodu zeby sprawdzic czy dziala :)
     $.ajaxSetup({ 
-    	cache: false
-    });
+    cache: false,
+    headers: {
+        "Access-Control-Allow-Headers":"X-Requested-With"
+    }
+});
 }
 
 function createTweet(input) {
@@ -36,3 +39,4 @@ $(document).ready(function() {
 		getQuote();
 	})
 });
+
